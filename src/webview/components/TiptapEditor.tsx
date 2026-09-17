@@ -124,7 +124,9 @@ export function TiptapEditor(props: TiptapEditorProps) {
       },
     },
     onUpdate: ({ editor }: any) => {
-      const text = editor.getText();
+      // Use a single newline between block nodes (paragraphs). Tiptap's default
+      // blockSeparator is "\n\n", which turns each Enter into a doubled newline.
+      const text = editor.getText({ blockSeparator: "\n" });
       props.onInput(text);
     },
     editable: !props.disabled,
@@ -158,7 +160,7 @@ export function TiptapEditor(props: TiptapEditorProps) {
         if (!currentEditor) {
           return;
         }
-        if (nextValue === currentEditor.getText()) {
+        if (nextValue === currentEditor.getText({ blockSeparator: "\n" })) {
           return;
         }
         currentEditor.commands.setContent(nextValue, false);
