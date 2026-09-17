@@ -51,7 +51,6 @@ export function BashToolCall(props: BashToolCallProps) {
       header={Header}
       output={state().output ? Output : undefined}
       footer={state().error ? () => <ErrorFooter error={state().error} /> : undefined}
-      defaultOpen={true}
       isPending={props.part.state?.status === "pending"}
       needsPermission={!!permission()}
       permission={permission()}
