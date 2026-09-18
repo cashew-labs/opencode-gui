@@ -2,6 +2,7 @@ import { Match, Switch, type Accessor } from "solid-js";
 import type { MessagePart, Permission } from "../../types";
 import { ReadToolCall } from "./ReadToolCall";
 import { EditToolCall } from "./EditToolCall";
+import { PatchToolCall } from "./PatchToolCall";
 import { GrepToolCall } from "./GrepToolCall";
 import { GlobToolCall } from "./GlobToolCall";
 import { BashToolCall } from "./BashToolCall";
@@ -31,6 +32,9 @@ export function ToolCall(props: ToolCallProps) {
       </Match>
       <Match when={tool() === "edit" || tool() === "write"}>
         <EditToolCall {...props} />
+      </Match>
+      <Match when={tool() === "apply_patch" || tool() === "patch"}>
+        <PatchToolCall {...props} />
       </Match>
       <Match when={tool() === "grep"}>
         <GrepToolCall {...props} />
